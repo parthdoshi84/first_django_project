@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{%block content %}
+<div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+		{% if movie_list %}
+		
+			{% for movie in movie_list %}
+				<div class="post-preview">
+					<h2 class="post-title">
+						<a href="{% url 'movie-detail' movie.pk %}">{{ movie.name }}</a>
+					</h2>
+					<!--<h5>Actors: </h5>
+					<ul>
+					{% for actor in movie.actors.all %}
+					<li>
+						<a href="{{ actor.get_absolute_url }}">{{ actor.first_name }}, {{actor.last_name}} </a>
+					</li>
+					{% endfor %}
+					
+					</ul>
+					
+					<h5>Director:</h5>
+					<a href="{{ movie.director.get_absolute_url }}">{{ movie.director.first_name }}, {{movie.director.last_name}} </a>
+					
+					<br><br>
+					<h5>Producer:</h5>
+					<a href="{{ movie.producer.get_absolute_url }}">{{ movie.producer.first_name }}, {{movie.producer.last_name}} </a>-->
+					<br>
+					<h5>Rating: {{movie.rating }} </h5>
+					
+				</div>
+			<hr>
+			<br>
+			{% endfor %}
+			
+		{% else %}
+			<h2>There are no books</h2>
+		{% endif %}        
+      </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{%block content %}
+<div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+		
+		<div class="post-preview">
+			<h2 class="post-title">
+				{{ movie.name }}
+			</h2>
+			<h5>Actors: </h5>
+			<ul>
+			{% for actor in movie.actors.all %}
+			<li>
+				<a href="{% url 'actor-detail' actor.pk %}">{{ actor.first_name }}, {{actor.last_name}} </a>
+			</li>
+			{% endfor %}
+			
+			</ul>
+			
+			<h5>Director:</h5>
+			<a href="{% url 'director-detail' movie.director.pk %}">{{ movie.director.first_name }}, {{movie.director.last_name}} </a>
+			
+			<br><br>
+			<h5>Producer:</h5>
+			<a href="{% url 'producer-detail' movie.producer.pk %}">{{ movie.producer.first_name }}, {{movie.producer.last_name}} </a>
+			
+			<br><br>
+			<h5>Plot:</h5>
+			{{movie.description}}
+			
+			<br><br>
+			
+			<h5>Rating: {{movie.rating }} </h5>
+			
+			
+
+		</div>
+			
+			       
+      </div>
+    </div>
+</div>
+{% endblock %}

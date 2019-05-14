@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <!-- Main Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="post-preview">
+          
+            <h4 class="post-title">
+			Must explore our collection of movies
+			</h4>
+			<br>
+            <h5 class="post-subtitle">
+              Number of movies available: {{ num_movies }}
+            </h5>
+        </div>
+        <hr>
+		<br>
+        <div class="post-preview">
+            <h4 class="post-title">
+              Some of the stunning actors with their best performances.
+            </h4>
+			<br>
+			<h5 class="post-subtitle">
+              Number of actors available: {{ num_actors }}
+            </h5>      
+        </div>
+        <hr>
+		<br>
+        <div class="post-preview">
+            <h4 class="post-title">
+              Each Director has a unique story to tell
+            </h4>
+			<br>
+            <h5 class="post-subtitle">
+              Number of directors available: {{ num_directors }}
+            </h5>
+    
+        </div>
+        <hr>
+		<br>
+        <div class="post-preview">
+            <h4 class="post-title">
+              Experience what it takes to put together a movie
+            </h4>
+			<br>
+            <h5 class="post-subtitle">
+			  Number of producers available: {{ num_producers }}
+
+			</h5>
+          
+        </div>
+        <hr>
+       
+      </div>
+    </div>
+  </div>
+
+  <hr>
+{% endblock %}
+
+
