@@ -2,13 +2,19 @@ from django.shortcuts import render
 
 from imdb.models import Actor, Director, Producer, Movie
 from django.views import generic
-
+from django.urls import reverse_lazy
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
 from imdb.forms import ContactForm
 from django.http import HttpResponse
+from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import user_passes_test
+from django.contrib import messages
+import csv, io
 
 def index(request):
     num_actors = Actor.objects.all().count()
@@ -50,7 +56,7 @@ class DirectorDetailView(generic.DetailView):
 class ProducerDetailView(generic.DetailView):
     model = Producer
     context_object_name = "producer"
-    
+
 def contact_form(request):
 
   
@@ -72,8 +78,43 @@ def contact_form(request):
     return render(request, 'imdb/contact_form.html', context)
 
 def message(request):
-	html = "<html><body>Thank you for the message </body></html>"
-	return HttpResponse(html)
+    template = "success_message.html"
+    context = {}
+    return render(request, template, context)
 
-
+@staff_member_required
+def actor_upload(request):
+    template = "actor_upload.html"
+    context={}
+    if request.method == 'GET':
+        return render(request, template,context)
+    
+    csv_file = request.FILES['file']
+    
+    if not csv_file.name.endswith('.csv'):
+        messages.error(request, 'Not a valid csv')
+    
+    '''readCSV = csv.reader(csv_file, delimiter=',')
+    for column in readCSV:
+        _,created = Actor.objects.update_or_create(
+            first_name = column[0],
+            last_name = column[1],
+            age = column[2],
+            about = column[3]
+        ) '''
+    data_set = csv_file.read().decode('UTF-8')
+    io_string = io.StringIO(data_set)
+    next(io_string)
+    
+    for column in csv.reader(io_string, delimiter = ','):
+        print(column)
+        _,created = Actor.objects.update_or_create(
+            first_name = column[0],
+            last_name = column[1],
+            age = column[2],
+            about = column[3]
+        )
+    template = "success_message.html"
+    return render(request,template, context)
+    
     

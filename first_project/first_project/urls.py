@@ -25,4 +25,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 	path('imdb/', include('imdb.urls')),
 	path('', RedirectView.as_view(url='/imdb/')),
+	path('accounts/', include('django.contrib.auth.urls')),
+
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

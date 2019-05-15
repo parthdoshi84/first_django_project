@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+{% if form.errors %}
+  <p>Your username and password didn't match. Please try again.</p>
+{% endif %}
+
+<!-- {% if next %}
+  {% if user.is_authenticated %}
+    <p>Your account doesn't have access to this page. To proceed,
+    please login with an account that has access.</p>
+  {% else %}
+    <p>Please login to see this page.</p>
+  {% endif %}
+{% endif %}
+-->
+<!--<<div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <p>Want to get in touch? Fill out the form below to send me a message and I will get back to you as soon as possible!</p>
+        <form name="sentMessage" id="contactForm" method="post" action="{% url 'login' %}" >
+          {% csrf_token %}
+
+		  <div class="control-group">
+            <div class="form-group floating-label-form-group controls">
+              <label>Username</label>
+              <input type="text" class="form-control" placeholder="Username" id="name" required data-validation-required-message="Please enter your username.">
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls">
+              <label>Password</label>
+              <input type="password" class="form-control" placeholder="Password" id="email" required data-validation-required-message="Please enter your password.">
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+      
+          <br>
+          <div id="success"></div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary" id="sendMessageButton">Send</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>-->
+<div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <p>Want to get in touch? Fill out the form below to send me a message and I will get back to you as soon as possible!</p>
+			<form method="post" action="{% url 'login' %}" name = "sentMessage" id="contactForm">
+			{% csrf_token %}
+			<table>
+			
+			<div class="control-group">
+				<div class="form-group floating-label-form-group controls">
+					<tr>
+			
+					  <td>{{ form.username.label_tag }}</td>
+					  <td>{{ form.username }}</td>
+					</tr>
+				</div>
+			</div>
+			
+			<div class="control-group">
+				<div class="form-group floating-label-form-group controls">			<tr>
+				  <td>{{ form.password.label_tag }}</td>
+				  <td>{{ form.password }}</td>
+				</div>
+			</div>
+			</tr>
+			</table>
+			<div class="form-group">
+				<input type="submit" value="login" class="btn btn-primary" id="sendMessageButton" />
+				<input type="hidden" name="next" value="{{ next }}" />
+			</div>
+			</form>
+		</div>
+	</div>
+</div>	
+
+
+{% endblock %}

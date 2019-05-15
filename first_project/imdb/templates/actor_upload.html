@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+{% if messages %}
+	{% for message in messages %}
+		<strong>message</strong>
+	{% endfor %}
+{% else %}
+<div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+			<form method="post" enctype = "multipart/form-data" name = "sentMessage" id="contactForm">
+			{% csrf_token %}
+			<div class="control-group">
+				<div class="form-group col-xs-12 floating-label-form-group controls">
+				  <label>Upload CSV</label>
+				  <input type="file" name = "file" class="form-control" placeholder="Phone Number" id="phone">
+				</div>
+			</div>
+			<div class="form-group">
+				<input type="submit" value="Upload" class="btn btn-primary" id="sendMessageButton" />
+			</div>
+			</form>
+		</div>
+	</div>
+</div>
+{% endif %}
+{% endblock %}	

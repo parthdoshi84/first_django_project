@@ -24,6 +24,8 @@ urlpatterns = [
 	path('director/<int:pk>', views.DirectorDetailView.as_view(), name='director-detail'),
 	path('producer/<int:pk>', views.ProducerDetailView.as_view(), name='producer-detail'),
 	path('contact/', views.contact_form, name='contact-form'),
-	path('message/', views.message, name='message'),
+	path('success_message/', views.message, name='message'),
+	path('actor_csv/', views.actor_upload, name = "actor_upload"),
+
 
 ]
