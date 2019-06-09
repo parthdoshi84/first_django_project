@@ -82,7 +82,10 @@ def message(request):
     context = {}
     return render(request, template, context)
 
-@staff_member_required
+def check_admin(user):
+	return user.username == 'parth'
+
+@user_passes_test(check_admin)
 def actor_upload(request):
     template = "actor_upload.html"
     context={}
